@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <!-- Maven model version -->
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- Maven parent data -->
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.4.3</version>
+        <relativePath/>
+    </parent>
+
+    <!-- Metadata -->
+    <groupId>com.gamaza.examples.grpc</groupId>
+    <artifactId>grpc-client</artifactId>
+    <version>1.0.0</version>
+    <name>GRPC Client</name>
+    <description>Spring Boot GRPC Example - Client module</description>
+
+    <!-- Project properties -->
+    <properties>
+        <!-- Encoding properties -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <!-- Java properties -->
+        <java.version>21</java.version>
+        <!-- Mapping versions -->
+        <org.mapstruct.version>1.6.3</org.mapstruct.version>
+        <!-- GRPC properties -->
+        <spring.grpc.version>0.4.0</spring.grpc.version>
+        <com.gamaza.examples.grpc.proto.version>1.0.0</com.gamaza.examples.grpc.proto.version>
+    </properties>
+
+    <!-- Project dependencies -->
+    <dependencies>
+
+        <!-- Spring dependencies -->
+        <dependency>
+            <groupId>org.springframework.grpc</groupId>
+            <artifactId>spring-grpc-spring-boot-starter</artifactId>
+        </dependency>
+
+        <!-- GRPC Dependencies -->
+        <dependency>
+            <groupId>io.grpc</groupId>
+            <artifactId>grpc-services</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.gamaza.examples.grpc</groupId>
+            <artifactId>grpc-proto</artifactId>
+            <version>${com.gamaza.examples.grpc.proto.version}</version>
+        </dependency>
+
+        <!-- Test dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+    <!-- Dependencies management set -->
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.springframework.grpc</groupId>
+                <artifactId>spring-grpc-dependencies</artifactId>
+                <version>${spring.grpc.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

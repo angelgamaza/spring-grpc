@@ -1,0 +1,98 @@
+// Protobuff version
+syntax = "proto3";
+
+// Imports
+import "google/protobuf/empty.proto";
+import "google/protobuf/wrappers.proto";
+
+// Protobuff package definition
+package com.gamaza.examples.grpc;
+
+// Protoc configurations
+option java_multiple_files = true;
+option java_package = "com.gamaza.examples.grpc";
+
+// Film Service definition
+service FilmService {
+
+  // Save a film
+  rpc save(FilmPostDto) returns (FilmDto);
+
+  // Find one film by its ID
+  rpc findById(google.protobuf.StringValue) returns (FilmRelationsDto) {}
+
+  // Find one film by its name
+  rpc findByName(google.protobuf.StringValue) returns (FilmRelationsDto) {}
+
+  // Find all films
+  rpc findAll(google.protobuf.Empty) returns (FilmsList) {}
+
+  // Find all films by its country
+  rpc findAllByCountry(google.protobuf.StringValue) returns (FilmsList) {}
+
+  // Find all films by its director id
+  rpc findAllByDirectorId(google.protobuf.StringValue) returns (FilmsList) {}
+
+}
+
+// Director Service definition
+service DirectorService {
+
+  // Save a director
+  rpc save(DirectorPostDto) returns (DirectorDto);
+
+  // Find one director by its ID
+  rpc findById(google.protobuf.StringValue) returns (DirectorRelationsDto) {}
+
+  // Find all directors
+  rpc findAll(google.protobuf.Empty) returns (DirectorsList) {}
+
+}
+
+// Requests
+message FilmPostDto {
+  string name = 1;
+  string country = 2;
+  string directorId = 3;
+}
+
+message DirectorPostDto {
+  string firstName = 1;
+  string lastName = 2;
+}
+
+// Responses
+message FilmDto {
+  string id = 1;
+  string name = 2;
+  string country = 3;
+}
+
+message FilmRelationsDto {
+  string id = 1;
+  string name = 2;
+  string country = 3;
+  DirectorDto director = 4;
+}
+
+message FilmsList {
+  repeated FilmDto films = 1;
+}
+
+message DirectorDto {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+}
+
+message DirectorRelationsDto {
+  string id = 1;
+  string firstName = 2;
+  string lastName = 3;
+  repeated FilmDto films = 4;
+}
+
+message DirectorsList {
+  repeated DirectorDto directors = 1;
+}
+

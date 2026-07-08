@@ -1,0 +1,25 @@
+## Spring properties ##
+spring:
+    application:
+        name: grpc-server
+    profiles:
+        active: dev
+    grpc:
+        server:
+            port: 8080
+    datasource:
+        type: com.zaxxer.hikari.HikariDataSource
+        driver-class-name: org.postgresql.Driver
+        url: jdbc:postgresql://${SPRING_DATASOURCE_HOST:localhost}:${SPRING_DATASOURCE_PORT:5432}/${SPRING_DATASOURCE_DATABASE:film}
+        username: ${SPRING_DATASOURCE_USERNAME:film}
+        password: ${SPRING_DATASOURCE_PASSWORD:film}
+    flyway:
+        enabled: true
+    jpa:
+        hibernate:
+            ddl-auto: validate
+        open-in-view: false
+        show-sql: true
+        properties:
+            hibernate:
+                format_sql: true

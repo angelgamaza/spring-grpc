@@ -1,0 +1,11 @@
+## Spring properties ##
+spring:
+    application:
+        name: grpc-client
+    profiles:
+        active: dev
+    grpc:
+        client:
+            default-channel:
+                address: static://${GRPC_SERVER_HOST:localhost}:${GRPC_SERVER_PORT:8080}
+                negotiation-type: plaintext
